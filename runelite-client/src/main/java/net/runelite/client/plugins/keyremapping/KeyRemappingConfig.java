@@ -30,6 +30,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
 
 @ConfigGroup("keyremapping")
@@ -48,6 +49,13 @@ public interface KeyRemappingConfig extends Config
 		position = 1
 	)
 	String fKeySection = "fKeys";
+
+    @ConfigSection(
+        name = "Mouse key remapping",
+        description = "Settings for remapping the mouse-keys.",
+        position = 2
+    )
+    String mouseSection = "mouseKeys";
 
 	@ConfigItem(
 		position = 1,
@@ -297,5 +305,29 @@ public interface KeyRemappingConfig extends Config
 	default ModifierlessKeybind control()
 	{
 		return new ModifierlessKeybind(KeyEvent.VK_UNDEFINED, InputEvent.CTRL_DOWN_MASK);
+	}
+
+	@ConfigItem(
+		position = 22,
+		keyName = "mouse4Keybind",
+		name = "Mouse Button 4 mapping",
+		description = "Keyboard key (with optional modifiers) that mouse button 4 should trigger.",
+        section = mouseSection
+	)
+	default Keybind mouse4Keybind()
+	{
+		return Keybind.NOT_SET;
+	}
+
+	@ConfigItem(
+		position = 23,
+		keyName = "mouse5Keybind",
+		name = "Mouse Button 5 mapping",
+		description = "Keyboard key (with optional modifiers) that mouse button 5 should trigger.",
+        section = mouseSection
+	)
+	default Keybind mouse5Keybind()
+	{
+		return Keybind.NOT_SET;
 	}
 }
